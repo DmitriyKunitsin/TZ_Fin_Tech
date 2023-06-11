@@ -11,7 +11,7 @@ namespace TZ_Fin_Tech
         public string Name { get; set; }
         public int Price { get; set; }
         public int Kol { get; set; }
-        public int Izdel_id { get; set; }
+        public int IzdelUP_id { get; set; }
 
         //public Parent(string name, int price, int id)
         //{
@@ -24,7 +24,7 @@ namespace TZ_Fin_Tech
             this.Name = string.Empty;
             this.Price = 0;
             this.Kol = 0;
-            this.Izdel_id = 0;
+            this.IzdelUP_id = 0;
         }
     }
 }

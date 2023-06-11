@@ -96,7 +96,7 @@ namespace TZ_Fin_Tech
                     Name = reader.GetString(0),
                     Price = reader.GetInt32(1) as int? ?? default(int),
                     Kol = reader.GetInt32(2) as int? ?? default(int),
-                    Izdel_id = reader.GetInt32(3) as int? ?? default(int)
+                    IzdelUP_id = reader.GetInt32(3) as int? ?? default(int)
                 });
             }
             return par;
