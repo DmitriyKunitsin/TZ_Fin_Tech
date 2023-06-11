@@ -13,12 +13,6 @@ namespace TZ_Fin_Tech
         public int Kol { get; set; }
         public int IzdelUP_id { get; set; }
 
-        //public Parent(string name, int price, int id)
-        //{
-        //    Name = name;
-        //    Price = price;
-        //    Id = id;
-        //}
         public Parent()
         {
             this.Name = string.Empty;

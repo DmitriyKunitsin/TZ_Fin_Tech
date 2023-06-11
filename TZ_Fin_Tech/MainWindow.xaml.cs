@@ -27,21 +27,29 @@ namespace TZ_Fin_Tech
             InitializeComponent();
             DataBase data = new DataBase();
             data.CreatTable_Izdel();
+           
         }
-
-       
+        private static int _lvl_data_base = 0;        
+        public static int lvl_data_base { get { return _lvl_data_base; } set { _lvl_data_base = value; } }
+        
+        ExcelApp ex = new ExcelApp();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-                      
-            ExcelApp ex = new ExcelApp();
             ex.ExportExcel();
-
         }
 
         private void Button_Click_Out__All_BD(object sender, RoutedEventArgs e)
         {
-            ExcelApp ex = new ExcelApp();
             ex.Export_full_DataBase_Excel();
+        }
+
+        public void Three_lvl_data_base_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Three_lvl_data_base.SelectedIndex == 0) { lvl_data_base = 1; }
+            if (Three_lvl_data_base.SelectedIndex == 1) { lvl_data_base = 2; }
+            if (Three_lvl_data_base.SelectedIndex == 2) { lvl_data_base = 3; }
         }
     }
 }
+    
+

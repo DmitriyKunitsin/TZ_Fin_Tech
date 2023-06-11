@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Reflection;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Shapes;
@@ -83,7 +84,7 @@ namespace TZ_Fin_Tech
         public IList<Parent> Data_Base_Out_User(int parent)
         {
             ApplicationConnect whereAccount = new ApplicationConnect();
-
+            
             string whereAcc = $"SELECT  Izdel.Name, IZDEL.Price , links.kol , IzdelUp_id FROM Links inner JOIN Izdel ON parent_id = links.parent AND izdelUP_id == links.IzdelUp AND  parent_id  = {parent}  AND id = links.name_id ;";
             SQLiteCommand command = new SQLiteCommand(whereAcc, whereAccount.myConnection);
             whereAccount.OpenConnection();

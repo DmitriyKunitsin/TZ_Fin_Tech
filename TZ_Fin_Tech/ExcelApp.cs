@@ -7,6 +7,7 @@ namespace TZ_Fin_Tech
 {
     internal class ExcelApp
     {
+        
         public void ExportExcel()
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
@@ -21,9 +22,6 @@ namespace TZ_Fin_Tech
             wb = app.Workbooks.Add();
             ws = wb.Worksheets[1];
 
-            //ws.Range["A1"].Value = "Id";
-            //ws.Range["B1"].Value = "Наименование";
-            //ws.Range["C1"].Value = "Стоимость";
             ws.Range["D1"].Value = "Изделие";
             ws.Range["D1"].Interior.Color = Excel.XlRgbColor.rgbGray;
             ws.Range["E1"].Value = "Кол-во";
@@ -32,13 +30,12 @@ namespace TZ_Fin_Tech
             ws.Range["F1"].Interior.Color = Excel.XlRgbColor.rgbGray;
             ws.Range["G1"].Value = "Цена" ;
             ws.Range["G1"].Interior.Color = Excel.XlRgbColor.rgbGray;
-
-
+            
             DataBase izd= new DataBase();
-
+            var lvl_parent =  MainWindow.lvl_data_base;
             var izdel = izd.table_Info_Izdel();
             var link = izd.table_Info_Links();
-            var parent = izd.Data_Base_Out_User(1);
+            var parent = izd.Data_Base_Out_User(lvl_parent);
             
             try
             {
@@ -54,7 +51,6 @@ namespace TZ_Fin_Tech
                 int price_lvl_three = 0;
                 foreach (Parent zdel in parent)
                 {
-                    
                     number_control_id = zdel.IzdelUP_id;
                     summ_price = zdel.Price;
                     summ_kol = zdel.Kol;
@@ -98,9 +94,7 @@ namespace TZ_Fin_Tech
                     }
                     ++counter;
                 }
-                
                 ws.Range["F2"].Value = full_price_for_all;
-                
             }
             catch (Exception ex)
             {
