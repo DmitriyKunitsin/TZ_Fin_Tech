@@ -15,7 +15,6 @@ namespace TZ_Fin_Tech
             Excel.Application app;
             Microsoft.Office.Interop.Excel.Workbook wb;
             Microsoft.Office.Interop.Excel.Worksheet ws;
-           
             
             app = new Excel.Application();
             
@@ -45,31 +44,25 @@ namespace TZ_Fin_Tech
             {
                 string cellName;
                 int counter = 2;
-                //int one_position_all = 0;
                 int all_price = 0;
                 int summ_cel = 0;
                 int kol = 0;
                 int check = 0;
-                
-                // string rrr = "A" + counter;
+                int check_id = 0;
+
+
                 foreach (Parent zdel in parent)
                 {
-                    
+                    check_id = zdel.Izdel_id;
                     summ_cel = zdel.Price;
                     kol = zdel.Kol;
+                    string rrr = new string(' ', check_id);
                     check = summ_cel* kol;
                     cellName = "D" + counter.ToString();
                     var range2 = ws.get_Range(cellName, cellName);
-                    if (zdel.Izdel_id == 1)
+                    if (zdel.Izdel_id == check_id)
                     {
-                        range2.Value2 = ws.Range["D" + counter].Value = " 1." + zdel.Name.ToString();
-                    }
-                    else if (zdel.Izdel_id == 2)
-                    {
-                        range2.Value2 = ws.Range["D" + counter].Value = "  2." + zdel.Name.ToString();
-                    }else if (zdel.Izdel_id == 3)
-                    {
-                        range2.Value2 = ws.Range["D" + counter].Value = "   3." + zdel.Name.ToString();
+                        range2.Value2 = ws.Range["D" + counter].Value = rrr + $"{check_id}. " + zdel.Name.ToString();
                     }
                     else
                     {
@@ -85,11 +78,10 @@ namespace TZ_Fin_Tech
                     var range4 = ws.get_Range(cellName, cellName);
                     range4.Value2 =zdel.Price.ToString();
                     
-                   // one_position_all += zdel.Kol;
                     all_price += check;
                     ++counter;
                 }
-                //ws.Range["F2"].Value = one_position_all;
+                
                 ws.Range["F2"].Value = all_price;
                 //counter = 2;
                 //foreach (Izdel zdel in izdel)
@@ -109,14 +101,6 @@ namespace TZ_Fin_Tech
 
 
                 //}
-
-
-                //for (int i = 2; i <= 99; i++) //вертикаль
-                //{
-                //    for (int j = 1; j < 3; j++)// горизонталь
-
-                //    { ws.Cells[i, j] = String.Format("Text {0} {1}", i, j); }
-                //}
             }
             catch (Exception ex)
             {
@@ -127,12 +111,9 @@ namespace TZ_Fin_Tech
                 misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive,
                 misValue, misValue, misValue, misValue, misValue);
 
-
                 wb.Close(true, misValue, misValue);
                 app.Quit();
                 MessageBox.Show("Файл создан");
         }
-        
-
     }
 }
