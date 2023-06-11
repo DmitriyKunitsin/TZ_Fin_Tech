@@ -101,5 +101,26 @@ namespace TZ_Fin_Tech
             }
             return par;
         }
+        public IList<Parent> Output_all_Data_Base()
+        {
+            ApplicationConnect whereAccount = new ApplicationConnect();
+
+            string whereAcc = $"SELECT  Izdel.Name, IZDEL.Price , links.kol , IzdelUp_id FROM Links inner JOIN Izdel ON  izdelUP_id == links.IzdelUp AND id = links.name_id ORDER BY parent_id ;";
+            SQLiteCommand command = new SQLiteCommand(whereAcc, whereAccount.myConnection);
+            whereAccount.OpenConnection();
+            var reader = command.ExecuteReader();
+            List<Parent> par = new List<Parent>();
+            while (reader.Read())
+            {
+                par.Add(new Parent()
+                {
+                    Name = reader.GetString(0),
+                    Price = reader.GetInt32(1) as int? ?? default(int),
+                    Kol = reader.GetInt32(2) as int? ?? default(int),
+                    IzdelUP_id = reader.GetInt32(3) as int? ?? default(int)
+                });
+            }
+            return par;
+        }
     }
 }

@@ -8,5 +8,6 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Content="Нажми на меня" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Height="50" Click="Button_Click"/>
+        <Button Content="Выгрузить всю базу данных" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Height="25" Margin="0 150 0 0" Click="Button_Click_Out__All_BD"/>
     </Grid>
 </Window>

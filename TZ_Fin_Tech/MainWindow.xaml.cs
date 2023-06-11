@@ -37,5 +37,11 @@ namespace TZ_Fin_Tech
             ex.ExportExcel();
 
         }
+
+        private void Button_Click_Out__All_BD(object sender, RoutedEventArgs e)
+        {
+            ExcelApp ex = new ExcelApp();
+            ex.Export_full_DataBase_Excel();
+        }
     }
 }
