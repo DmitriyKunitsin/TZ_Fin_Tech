@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TZ_Fin_Tech"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Техническое задание" Height="450" Width="800">
     <Window.Background>
         <ImageBrush ImageSource="http://bloomofx.com/images/dataservices.jpg"  />
     </Window.Background>
@@ -27,11 +27,25 @@
         </Grid>
         <Grid  Grid.Row="0">
             <StackPanel >
-                <TextBlock x:Name="Selected_Number_base_data" Width="200" Margin="0 50 0 10"/>
-                <ComboBox x:Name="Three_lvl_data_base" SelectionChanged="Three_lvl_data_base_SelectionChanged" VerticalAlignment="Top" HorizontalAlignment="Center" Width="50" Height="25" Margin="0 0 0 0">
-                    <TextBlock>1</TextBlock>
-                    <TextBlock>2</TextBlock>
-                    <TextBlock>3</TextBlock>
+                <ComboBox x:Name="Three_lvl_data_base" SelectionChanged="Three_lvl_data_base_SelectionChanged" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Height="25" Margin="0 50 0 0">
+                    <ComboBox.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#00ffc4"/>
+                    </ComboBox.Resources>
+                    <TextBlock Text="1" FontSize="14" FontWeight="Bold">
+                        <TextBlock.Background>
+                            <SolidColorBrush  Color="Green" Opacity="0.3"/>
+                        </TextBlock.Background>
+                    </TextBlock>
+                    <TextBlock Text="2" FontSize="14" FontWeight="Bold">
+                        <TextBlock.Background>
+                            <SolidColorBrush  Color="Green" Opacity="0.3"/>
+                        </TextBlock.Background>
+                    </TextBlock>
+                    <TextBlock Text="3" FontSize="14" FontWeight="Bold">
+                        <TextBlock.Background>
+                            <SolidColorBrush  Color="Green" Opacity="0.3"/>
+                        </TextBlock.Background>
+                    </TextBlock>
                 </ComboBox>
             </StackPanel>
             
