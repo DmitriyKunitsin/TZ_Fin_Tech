@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Reflection;
+using System.Runtime.Remoting.Contexts;
+using System.Security.RightsManagement;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
@@ -84,7 +86,7 @@ namespace TZ_Fin_Tech
         public IList<Parent> Data_Base_Out_User(int parent)
         {
             ApplicationConnect whereAccount = new ApplicationConnect();
-            
+
             string whereAcc = $"SELECT  Izdel.Name, IZDEL.Price , links.kol , IzdelUp_id FROM Links inner JOIN Izdel ON parent_id = links.parent AND izdelUP_id == links.IzdelUp AND  parent_id  = {parent}  AND id = links.name_id ;";
             SQLiteCommand command = new SQLiteCommand(whereAcc, whereAccount.myConnection);
             whereAccount.OpenConnection();
@@ -123,5 +125,40 @@ namespace TZ_Fin_Tech
             }
             return par;
         }
+
+        public void Inset_data_base_two_table(string Name,int kol ,int price, int IzdelUP_id, int izdel_id, int parent_id)
+        {
+            int id = 0;
+            ApplicationConnect connect = new ApplicationConnect();
+            SQLiteDataReader reader = null;
+            string add_table_one = "INSERT INTO Izdel ('Name', 'Price', 'IzdelUp_id','izdel_id','parent_id') VALUES (@Name, @Price, @IzdelUp_id, @izdel_id, @parent_id)";
+            SQLiteCommand myCommand = new SQLiteCommand(add_table_one, connect.myConnection);
+            connect.OpenConnection();
+            myCommand.Parameters.AddWithValue("@Name", Name);
+            myCommand.Parameters.AddWithValue("@Price", price);
+            myCommand.Parameters.AddWithValue("@IzdelUp_id", IzdelUP_id);
+            myCommand.Parameters.AddWithValue("@izdel_id", izdel_id);
+            myCommand.Parameters.AddWithValue("@parent_id", parent_id);
+            var resault = myCommand.ExecuteNonQuery();
+            string search_id_name = $"SELECT id FROM Izdel WHERE Name='{Name}'";
+            SQLiteCommand comand_id_name = new SQLiteCommand(search_id_name, connect.myConnection);
+            connect.OpenConnection();
+            reader = comand_id_name.ExecuteReader();
+            while (reader.Read())
+            {
+                id = reader.GetInt32(0);
+            }
+            string add_data_table_two = "INSERT INTO Links ('IzdelUp', 'Izdel', 'kol','parent','name_id') VALUES (@IzdelUp, @Izdel, @kol, @parent, @name_id)";
+            SQLiteCommand comand_add_two_table = new SQLiteCommand(add_data_table_two, connect.myConnection);
+            connect.OpenConnection();
+            comand_add_two_table.Parameters.AddWithValue("@IzdelUp", IzdelUP_id);
+            comand_add_two_table.Parameters.AddWithValue("@Izdel", izdel_id);
+            comand_add_two_table.Parameters.AddWithValue("@kol", kol);
+            comand_add_two_table.Parameters.AddWithValue("@parent", parent_id);
+            comand_add_two_table.Parameters.AddWithValue("@name_id", id);
+            resault = comand_add_two_table.ExecuteNonQuery();
+            connect.CloseConnection();
+        }
     }
 }
+//       
