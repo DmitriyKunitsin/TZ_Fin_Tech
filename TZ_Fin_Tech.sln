@@ -5,8 +5,6 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TZ_Fin_Tech", "TZ_Fin_Tech\TZ_Fin_Tech.csproj", "{CDA01F9D-2EFD-4813-8040-8870FDA29F6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonDB", "..\DmitriyKunitsin\LessonDB\LessonDB.csproj", "{D4210AD0-53D4-4140-B9D9-40531B345A02}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{CDA01F9D-2EFD-4813-8040-8870FDA29F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDA01F9D-2EFD-4813-8040-8870FDA29F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDA01F9D-2EFD-4813-8040-8870FDA29F6F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D4210AD0-53D4-4140-B9D9-40531B345A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4210AD0-53D4-4140-B9D9-40531B345A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D4210AD0-53D4-4140-B9D9-40531B345A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4210AD0-53D4-4140-B9D9-40531B345A02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
