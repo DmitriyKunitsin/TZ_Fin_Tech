@@ -185,7 +185,7 @@ namespace TZ_Fin_Tech
                     var range = ws.get_Range(cellName, cellName);
                     range.Value2 = zdel.Kol.ToString();
                     cellName = "F" + counter.ToString();
-                    if (number_control_id == 2)
+                    if (number_control_id == 2 )
                     {
                         lvl_position_three = cellName = "F" + counter.ToString();
                     }
@@ -194,7 +194,7 @@ namespace TZ_Fin_Tech
                     cellName = "G" + counter.ToString();
                     var range4 = ws.get_Range(cellName, cellName);
                     range4.Value2 = zdel.Price.ToString();
-
+                    
                     full_price_for_all += full_price_for_price_and_kol;
                     if (number_control_id >= 3)
                     {
@@ -210,17 +210,18 @@ namespace TZ_Fin_Tech
                 }
 
                 ws.Range["F2"].Value = full_price_for_all;
-
+                ws.Range["F9"].Formula = "=SUM(F10,F11)";
+                ws.Range["F12"].Formula = "=SUM(F13,F14)";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             wb.SaveAs(path + "Техническое задание(Куницин).xlsx",
-                Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook,
+                Excel.XlFileFormat.xlOpenXMLWorkbook,
                     misValue,
                 misValue, misValue, misValue,
-                Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive,
+                Excel.XlSaveAsAccessMode.xlExclusive,
                 misValue, misValue, misValue, misValue, misValue);
 
             wb.Close(true, misValue, misValue);
