@@ -49,12 +49,12 @@
         <Grid  Grid.Row="0">
             <StackPanel >
                 <StackPanel Width="300" Margin="0 20 0 0">
-                <TextBox x:Name="text_box_name" Margin="0 0 0 10"></TextBox>
-                <TextBox x:Name="text_box_kol" Margin="0 0 0 10"></TextBox>
-                <TextBox x:Name="text_box_price" Margin="0 0 0 10"></TextBox>
-                <TextBox x:Name="text_box_izdelUP" Margin="0 0 0 10"></TextBox>
-                <TextBox x:Name="text_box_izdel" Margin="0 0 0 10"></TextBox>
-                <TextBox x:Name="text_box_parent" Margin="0 0 0 10"></TextBox>
+                <TextBox Text="Введи название позиции" GotFocus="text_box_name_GotFocus" x:Name="text_box_name" Margin="0 0 0 10"></TextBox>
+                <TextBox Text="Введите колличество" GotFocus="text_box_kol_GotFocus" x:Name="text_box_kol" Margin="0 0 0 10"></TextBox>
+                <TextBox Text="Введите стоимость за единицу" GotFocus="text_box_price_GotFocus" x:Name="text_box_price" Margin="0 0 0 10"></TextBox>
+                <TextBox Text="Введитель уровень UP " GotFocus="text_box_izdelUP_GotFocus" x:Name="text_box_izdelUP" Margin="0 0 0 10"></TextBox>
+                <TextBox Text="Введите уникальнй номер" GotFocus="text_box_izdel_GotFocus" x:Name="text_box_izdel" Margin="0 0 0 10"></TextBox>
+                <TextBox Text="Введите родительский уроень" GotFocus="text_box_parent_GotFocus" x:Name="text_box_parent" Margin="0 0 0 10"></TextBox>
                 </StackPanel>
             </StackPanel>
             
