@@ -44,27 +44,28 @@ namespace TZ_Fin_Tech
             {
                 string cellName;
                 int counter = 2;
-                int all_price = 0;
-                int summ_cel = 0;
-                int kol = 0;
-                int check = 0;
-                int check_id = 0;
+                int full_price_for_all = 0;
+                int summ_price = 0;
+                int summ_kol = 0;
+                int full_price_for_price_and_kol = 0;
+                int number_control_id = 0;
 
                 foreach (Parent zdel in parent)
                 {
-                    check_id = zdel.Izdel_id;
-                    summ_cel = zdel.Price;
-                    kol = zdel.Kol;
-                    string rrr = new string(' ', check_id);
-                    check = summ_cel* kol;
+                    number_control_id = zdel.Izdel_id;
+                    summ_price = zdel.Price;
+                    summ_kol = zdel.Kol;
+                    string counter_spaces = new string(' ', number_control_id);
+                    full_price_for_price_and_kol = summ_price * summ_kol;
                     cellName = "D" + counter.ToString();
                     var range2 = ws.get_Range(cellName, cellName);
-                    if (zdel.Izdel_id == check_id)
-                    {
-                        range2.Value2 = ws.Range["D" + counter].Value = rrr + $"{check_id}. " + zdel.Name.ToString();
+                    if (zdel.Izdel_id == number_control_id)
+                    {  
+                        range2.Value2 = ws.Range["D" + counter].Value = 
+                        counter_spaces + $"{number_control_id}. " + zdel.Name.ToString();
                     }
                     else
-                    {
+                    {   
                         range2.Value2 = zdel.Name.ToString();
                     }
                     cellName = "E" + counter.ToString();
@@ -72,32 +73,16 @@ namespace TZ_Fin_Tech
                     range.Value2 = zdel.Kol.ToString();
                     cellName = "F" + counter.ToString();
                     var range3 = ws.get_Range(cellName, cellName);
-                    range3.Value2 = check;
+                    range3.Value2 = full_price_for_price_and_kol;
                     cellName= "G" + counter.ToString();
                     var range4 = ws.get_Range(cellName, cellName);
                     range4.Value2 =zdel.Price.ToString();
-                    
-                    all_price += check;
+
+                    full_price_for_all += full_price_for_price_and_kol;
                     ++counter;
                 }
                 
-                ws.Range["F2"].Value = all_price;
-                //counter = 2;
-                //foreach (Izdel zdel in izdel)
-                //{
-                //    cellName = "A" + counter.ToString();
-                //    var range = ws.get_Range(cellName, cellName);
-                //    range.Value2 = zdel.Id.ToString();
-                //    cellName = "B" + counter.ToString();
-                //    var range2 = ws.get_Range(cellName, cellName);
-                //    range2.Value2 = zdel.Name.ToString();
-                //    cellName = "C" + counter.ToString();
-                //    var range3 = ws.get_Range(cellName, cellName);
-                //    range3.Value2 = zdel.Price.ToString();
-
-                //    counter++;
-
-                //}
+                ws.Range["F2"].Value = full_price_for_all;
             }
             catch (Exception ex)
             {

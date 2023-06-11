@@ -84,11 +84,7 @@ namespace TZ_Fin_Tech
         {
             ApplicationConnect whereAccount = new ApplicationConnect();
 
-            string whereAcc = $"SELECT  Izdel.Name, IZDEL.Price , links.kol, izdel_id  " +
-                $"FROM Links inner JOIN Izdel " +
-                $"ON parent_id = links.parent " +
-                $"AND parent_id = '{parent}' " +
-                $"AND izdel_id = LINKS.Izdel";
+            string whereAcc = $"SELECT  Izdel.Name, IZDEL.Price , links.kol , IzdelUp_id FROM Links inner JOIN Izdel ON parent_id = links.parent AND izdelUP_id == links.IzdelUp AND  parent_id  = {parent}  AND id = links.name_id ;";
             SQLiteCommand command = new SQLiteCommand(whereAcc, whereAccount.myConnection);
             whereAccount.OpenConnection();
             var reader = command.ExecuteReader();
