@@ -50,15 +50,31 @@ namespace TZ_Fin_Tech
                 int summ_cel = 0;
                 int kol = 0;
                 int check = 0;
+                
                 // string rrr = "A" + counter;
                 foreach (Parent zdel in parent)
                 {
+                    
                     summ_cel = zdel.Price;
                     kol = zdel.Kol;
                     check = summ_cel* kol;
                     cellName = "D" + counter.ToString();
                     var range2 = ws.get_Range(cellName, cellName);
-                    range2.Value2 = zdel.Name.ToString();
+                    if (zdel.Izdel_id == 1)
+                    {
+                        range2.Value2 = ws.Range["D" + counter].Value = " 1." + zdel.Name.ToString();
+                    }
+                    else if (zdel.Izdel_id == 2)
+                    {
+                        range2.Value2 = ws.Range["D" + counter].Value = "  2." + zdel.Name.ToString();
+                    }else if (zdel.Izdel_id == 3)
+                    {
+                        range2.Value2 = ws.Range["D" + counter].Value = "   3." + zdel.Name.ToString();
+                    }
+                    else
+                    {
+                        range2.Value2 = zdel.Name.ToString();
+                    }
                     cellName = "E" + counter.ToString();
                     var range = ws.get_Range(cellName, cellName);
                     range.Value2 = zdel.Kol.ToString();

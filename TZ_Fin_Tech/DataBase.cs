@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Reflection;
+using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
+using System.Windows.Shapes;
 
 namespace TZ_Fin_Tech
 {
@@ -82,9 +84,11 @@ namespace TZ_Fin_Tech
         {
             ApplicationConnect whereAccount = new ApplicationConnect();
 
-            string whereAcc = $"SELECT  Izdel.Name, IZDEL.Price , links.kol " +
-                $"FROM Links inner JOIN Izdel ON Izdel = izdel.izdel_id " +
-                $"AND IzdelUp_id = IzdelUp AND parent_id = '{parent}'";
+            string whereAcc = $"SELECT  Izdel.Name, IZDEL.Price , links.kol, izdel_id  " +
+                $"FROM Links inner JOIN Izdel " +
+                $"ON parent_id = links.parent " +
+                $"AND parent_id = '{parent}' " +
+                $"AND izdel_id = LINKS.Izdel";
             SQLiteCommand command = new SQLiteCommand(whereAcc, whereAccount.myConnection);
             whereAccount.OpenConnection();
             var reader = command.ExecuteReader();
@@ -95,7 +99,8 @@ namespace TZ_Fin_Tech
                 {
                     Name = reader.GetString(0),
                     Price = reader.GetInt32(1) as int? ?? default(int),
-                    Kol = reader.GetInt32(2) as int? ?? default(int)
+                    Kol = reader.GetInt32(2) as int? ?? default(int),
+                    Izdel_id = reader.GetInt32(3) as int? ?? default(int)
                 });
             }
             return par;
