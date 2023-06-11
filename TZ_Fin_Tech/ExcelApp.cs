@@ -50,7 +50,6 @@ namespace TZ_Fin_Tech
                 int check = 0;
                 int check_id = 0;
 
-
                 foreach (Parent zdel in parent)
                 {
                     check_id = zdel.Izdel_id;
@@ -73,7 +72,7 @@ namespace TZ_Fin_Tech
                     range.Value2 = zdel.Kol.ToString();
                     cellName = "F" + counter.ToString();
                     var range3 = ws.get_Range(cellName, cellName);
-                    range3.Value2 = check;//zdel.Price.ToString();
+                    range3.Value2 = check;
                     cellName= "G" + counter.ToString();
                     var range4 = ws.get_Range(cellName, cellName);
                     range4.Value2 =zdel.Price.ToString();
@@ -86,7 +85,6 @@ namespace TZ_Fin_Tech
                 //counter = 2;
                 //foreach (Izdel zdel in izdel)
                 //{
-
                 //    cellName = "A" + counter.ToString();
                 //    var range = ws.get_Range(cellName, cellName);
                 //    range.Value2 = zdel.Id.ToString();
@@ -99,16 +97,17 @@ namespace TZ_Fin_Tech
 
                 //    counter++;
 
-
                 //}
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            wb.SaveAs(path + "Техническое задание(Куницин).xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook,
+            wb.SaveAs(path + "Техническое задание(Куницин).xlsx", 
+                Microsoft.Office.Interop.Excel.XlFileFormat.xlOpenXMLWorkbook,
                     misValue,
-                misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive,
+                misValue, misValue, misValue,
+                Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive,
                 misValue, misValue, misValue, misValue, misValue);
 
                 wb.Close(true, misValue, misValue);
