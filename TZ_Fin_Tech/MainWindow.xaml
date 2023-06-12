@@ -60,8 +60,8 @@
             
         </Grid>
         <StackPanel Grid.Row="1" Grid.Column="0">
-            <Button Width="200" Height="30" Click="Button_Click_Add_data">Внести данные в бд</Button>
-
+            <Button Width="200" Height="30" Click="Button_Click_Add_data" BorderThickness="5" BorderBrush="#242f86">Внести данные в бд</Button>
+            <Button Click="Button_Create_new_position" Margin="0 20 0 0" Width="250" Height="40" BorderThickness="8" BorderBrush="#242f86">Добавить новую позицию товара</Button>
         </StackPanel>
     </Grid>
 </Window>

@@ -104,7 +104,13 @@ namespace TZ_Fin_Tech
         private void text_box_name_GotFocus(object sender, RoutedEventArgs e)  {  text_box_name.Clear();  }
         private void text_box_kol_GotFocus(object sender, RoutedEventArgs e)   {    text_box_kol.Clear();   }
         private void text_box_price_GotFocus(object sender, RoutedEventArgs e)   { text_box_price.Clear();   }
-       
+
+        private void Button_Create_new_position(object sender, RoutedEventArgs e)
+        {
+            Created_new_position created = new Created_new_position();
+            created.Show();
+            this.Close();
+        }
     }
 }
     

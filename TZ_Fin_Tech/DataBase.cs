@@ -178,10 +178,10 @@ namespace TZ_Fin_Tech
             }
             return par;
         }
-        public int  Seatch_max_lvl_parent(out int parent_id)
+        public int  Seatch_max_lvl_parent()
         {
             ApplicationConnect connect = new ApplicationConnect();
-            parent_id = 0;
+            int parent_id = 0;
             string search_lvl_par = "SELECT MAX(parent_id) FROM Izdel";
             SQLiteCommand com_search_lvl_ = new SQLiteCommand(search_lvl_par, connect.myConnection);
             connect.OpenConnection();
