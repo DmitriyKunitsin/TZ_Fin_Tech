@@ -27,7 +27,12 @@ namespace TZ_Fin_Tech
             InitializeComponent();
             DataBase data = new DataBase();
             data.CreatTable_Izdel();
-           
+            var list = data.Out_data_view_list(lvl_data_base);
+            foreach ( var item in list )
+            {
+                parentList.Items.Add(item);
+            }
+            
         }
         private static int _lvl_data_base = 0;        
         public static int lvl_data_base { get { return _lvl_data_base; } set { _lvl_data_base = value; } }

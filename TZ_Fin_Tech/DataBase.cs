@@ -125,7 +125,6 @@ namespace TZ_Fin_Tech
             }
             return par;
         }
-
         public void Inset_data_base_two_table(string Name,int kol ,int price, int IzdelUP_id, int izdel_id, int parent_id)
         {
             int id = 0;
@@ -158,6 +157,26 @@ namespace TZ_Fin_Tech
             comand_add_two_table.Parameters.AddWithValue("@name_id", id);
             resault = comand_add_two_table.ExecuteNonQuery();
             connect.CloseConnection();
+        }
+
+        public List<Parent> Out_data_view_list(int lvl_comboBox)
+        {
+            ApplicationConnect connect = new ApplicationConnect();
+            string where_parent_number = $"SELECT  Izdel.Name, IZDEL.Price , links.kol  FROM Links inner JOIN Izdel ON parent_id = links.parent AND izdelUP_id == links.IzdelUp AND  parent_id  = '{lvl_comboBox}'  AND id = links.name_id ; ";
+            SQLiteCommand com_search_parent_number = new SQLiteCommand(where_parent_number, connect.myConnection);
+            connect.OpenConnection();
+            var reader = com_search_parent_number.ExecuteReader();
+            List<Parent> par = new List<Parent>();
+            while (reader.Read())
+            {
+                par.Add(new Parent()
+                {
+                    Name = reader.GetString(0),
+                    Price = reader.GetInt32(1) as int? ?? default(int),
+                    Kol = reader.GetInt32(2) as int? ?? default(int),
+                });
+            }
+            return par;
         }
     }
 }

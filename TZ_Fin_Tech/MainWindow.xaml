@@ -4,6 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TZ_Fin_Tech"
+        
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        
         mc:Ignorable="d"
         Title="Техническое задание" Height="450" Width="800">
     <Window.Background>
@@ -18,6 +22,17 @@
             <RowDefinition />
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid Grid.Column="1" Grid.Row="0">
+            <ListView Margin="10" ItemsSource="{DynamicResource ResourceKey=Parent}" x:Name="parentList">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Наименоание" DisplayMemberBinding="{Binding Name}" Width="200"></GridViewColumn>
+                            <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding Price}" Width="100"></GridViewColumn>
+                            <GridViewColumn Header="колличество" DisplayMemberBinding="{Binding Kol}" Width="75"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+            </ListView> 
+        </Grid>
         <Grid Grid.Column="1" Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
