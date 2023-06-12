@@ -125,18 +125,19 @@ namespace TZ_Fin_Tech
             }
             return par;
         }
-        public void Inset_data_base_two_table(string Name,int kol ,int price, int IzdelUP_id, int izdel_id)
+        public void Inset_data_base_two_table(string Name,int kol ,int price, int IzdelUP_id, int izdel_id, int parent_id)
         {
             int id = 0;
             ApplicationConnect connect = new ApplicationConnect();
             SQLiteDataReader reader = null;
-            string add_table_one = "INSERT INTO Izdel ('Name', 'Price', 'IzdelUp_id','izdel_id') VALUES (@Name, @Price, @IzdelUp_id, @izdel_id)";
+            string add_table_one = "INSERT INTO Izdel ('Name', 'Price', 'IzdelUp_id','izdel_id','parent_id') VALUES (@Name, @Price, @IzdelUp_id, @izdel_id, @parent_id)";
             SQLiteCommand myCommand = new SQLiteCommand(add_table_one, connect.myConnection);
             connect.OpenConnection();
             myCommand.Parameters.AddWithValue("@Name", Name);
             myCommand.Parameters.AddWithValue("@Price", price);
             myCommand.Parameters.AddWithValue("@IzdelUp_id", IzdelUP_id);
             myCommand.Parameters.AddWithValue("@izdel_id", izdel_id);
+            myCommand.Parameters.AddWithValue("@parent_id", parent_id);
             var resault = myCommand.ExecuteNonQuery();
             string search_id_name = $"SELECT id FROM Izdel WHERE Name='{Name}'";
             SQLiteCommand comand_id_name = new SQLiteCommand(search_id_name, connect.myConnection);
@@ -146,12 +147,13 @@ namespace TZ_Fin_Tech
             {
                 id = reader.GetInt32(0);
             }
-            string add_data_table_two = "INSERT INTO Links ('IzdelUp', 'Izdel', 'kol','name_id') VALUES (@IzdelUp, @Izdel, @kol, @name_id)";
+            string add_data_table_two = "INSERT INTO Links ('IzdelUp', 'Izdel', 'kol','parent','name_id') VALUES (@IzdelUp, @Izdel, @kol, @parent, @name_id)";
             SQLiteCommand comand_add_two_table = new SQLiteCommand(add_data_table_two, connect.myConnection);
             connect.OpenConnection();
             comand_add_two_table.Parameters.AddWithValue("@IzdelUp", IzdelUP_id);
             comand_add_two_table.Parameters.AddWithValue("@Izdel", izdel_id);
             comand_add_two_table.Parameters.AddWithValue("@kol", kol);
+            comand_add_two_table.Parameters.AddWithValue("@parent", parent_id);
             comand_add_two_table.Parameters.AddWithValue("@name_id", id);
             resault = comand_add_two_table.ExecuteNonQuery();
             connect.CloseConnection();
@@ -195,7 +197,7 @@ namespace TZ_Fin_Tech
         public List<Izdel>  Seatch_all_lvl_parent()
         {
             ApplicationConnect connect = new ApplicationConnect();
-            string search_lvl_par = "SELECT DISTINCT parent_id FROM Izdel";
+            string search_lvl_par = "SELECT DISTINCT  parent_id FROM Izdel ORDER BY parent_id ";
             SQLiteCommand com_search_lvl_ = new SQLiteCommand(search_lvl_par, connect.myConnection);
             connect.OpenConnection();
             var reader = com_search_lvl_.ExecuteReader();
@@ -208,6 +210,38 @@ namespace TZ_Fin_Tech
                 });
             }
            return zdel;
+        }
+        public List<Parent>  Seatch_all_lvl_IzelUp()
+        {
+            ApplicationConnect connect = new ApplicationConnect();
+            string search_lvl_par = "SELECT DISTINCT  IzdelUp_id FROM Izdel ORDER BY IzdelUp_id ";
+            SQLiteCommand com_search_lvl_ = new SQLiteCommand(search_lvl_par, connect.myConnection);
+            connect.OpenConnection();
+            var reader = com_search_lvl_.ExecuteReader();
+            List<Parent> zdel = new List<Parent>();
+            while (reader.Read())
+            {
+                zdel.Add(new Parent()
+                {
+                  IzdelUP_id  = reader.GetInt32(0)
+                });
+            }
+           return zdel;
+        }
+        public int  Seatch_Izel_Unique()
+        {
+            int max_izdel_id = 0;
+            ApplicationConnect connect = new ApplicationConnect();
+            string search_lvl_par = "SELECT MAX(Izdel_id) FROM Izdel ";
+            SQLiteCommand com_search_lvl_ = new SQLiteCommand(search_lvl_par, connect.myConnection);
+            connect.OpenConnection();
+            var reader = com_search_lvl_.ExecuteReader();
+            
+            while (reader.Read())
+            {
+                max_izdel_id = Convert.ToInt32(reader.GetInt32(0));
+            }
+           return max_izdel_id;
         }
     }
 }

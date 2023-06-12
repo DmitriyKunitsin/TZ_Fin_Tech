@@ -39,24 +39,6 @@
                     <RowDefinition/>
                  </Grid.RowDefinitions>
             <ComboBox SelectedIndex="0" x:Name="Three_lvl_data_base" SelectionChanged="Three_lvl_data_base_SelectionChanged" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Height="25" Margin="0 10 0 0">
-                <ComboBox.Resources>
-                    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#00ffc4"/>
-                </ComboBox.Resources>
-                <TextBlock Text="1" FontSize="14" FontWeight="Bold">
-                    <TextBlock.Background>
-                        <SolidColorBrush  Color="Green" Opacity="0.3"/>
-                    </TextBlock.Background>
-                </TextBlock>
-                <TextBlock Text="2" FontSize="14" FontWeight="Bold">
-                    <TextBlock.Background>
-                        <SolidColorBrush  Color="Green" Opacity="0.3"/>
-                    </TextBlock.Background>
-                </TextBlock>
-                <TextBlock Text="3" FontSize="14" FontWeight="Bold">
-                    <TextBlock.Background>
-                        <SolidColorBrush  Color="Green" Opacity="0.3"/>
-                    </TextBlock.Background>
-                </TextBlock>
             </ComboBox>
             <Button Grid.Row="0"  Content="Выгрузить выбранный уровень бд" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Height="25" Click="Button_Click" Margin="0 50 0 0"/>
              <Button Grid.Row="1" Content="Выгрузить всю базу данных" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Height="25" Margin="0 0 0 0" Click="Button_Click_Out__All_BD"/>
@@ -67,9 +49,10 @@
                 <TextBox Text="Введи название позиции" GotFocus="text_box_name_GotFocus" x:Name="text_box_name" Margin="0 0 0 10"></TextBox>
                 <TextBox Text="Введите колличество" GotFocus="text_box_kol_GotFocus" x:Name="text_box_kol" Margin="0 0 0 10"></TextBox>
                 <TextBox Text="Введите стоимость за единицу" GotFocus="text_box_price_GotFocus" x:Name="text_box_price" Margin="0 0 0 10"></TextBox>
-                <TextBox Text="Введитель уровень UP " GotFocus="text_box_izdelUP_GotFocus" x:Name="text_box_izdelUP" Margin="0 0 0 10"></TextBox>
-                <TextBox Text="Введите уникальнй номер" GotFocus="text_box_izdel_GotFocus" x:Name="text_box_izdel" Margin="0 0 0 10"></TextBox>
-                    <ComboBox Text="Выберите родительский уровень" x:Name="parent_all_lvl"></ComboBox>
+                <TextBlock Margin="0 0 0 3" Background="#6e78c6" Text="Выберите уровень продукта 1,2 или 3"></TextBlock>
+                <ComboBox x:Name="izdelUp_all_lvl" Margin="0 0 0 10" Height="20" ></ComboBox>
+                <TextBlock Margin="0 0 0 3" Background="#6e78c6" Text="Выберите родительский уровень"></TextBlock>
+                <ComboBox x:Name="parent_all_lvl" Height="20" ></ComboBox>
                 </StackPanel>
             </StackPanel>
             
