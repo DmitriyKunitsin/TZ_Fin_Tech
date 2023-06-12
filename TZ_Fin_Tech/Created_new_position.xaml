@@ -15,14 +15,12 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
             <StackPanel Width="300" Margin="0 20 0 0">
-                <TextBox GotFocus="text_box_name_GotFocus" Height="25" Text="Введи название позиции"  x:Name="text_box_name" Margin="0 0 0 10"></TextBox>
-            <TextBox GotFocus="text_box_kol_GotFocus" Height="25" Text="Введите колличество" x:Name="text_box_kol" Margin="0 0 0 10"></TextBox>
-            <TextBox GotFocus="text_box_price_GotFocus" Height="25" Text="Введите стоимость за единицу"  x:Name="text_box_price" Margin="0 0 0 10"></TextBox>
-                <TextBlock Height="20" Margin="0 0 0 3" Background="#6e78c6" Text="Выберите уровень продукта 1,2 или 3"></TextBlock>
-                <ComboBox  x:Name="izdelUp_all_lvl" Margin="0 0 0 10" Height="25" ></ComboBox>
+                <TextBox GotFocus="text_box_name_GotFocus" Height="35" Text="Введи название позиции"  x:Name="text_box_name" Margin="0 0 0 10"></TextBox>
+            <TextBox GotFocus="text_box_kol_GotFocus" Height="35" Text="Введите колличество" x:Name="text_box_kol" Margin="0 0 0 10"></TextBox>
+            <TextBox GotFocus="text_box_price_GotFocus" Height="35" Text="Введите стоимость за единицу"  x:Name="text_box_price" Margin="0 0 0 10"></TextBox>
             </StackPanel>
         <StackPanel Grid.Row="1">
-            <Button Margin="0 100 0 0" Width="100" Height="25" Click="Button_Click_Add_Data_Base">Добавить</Button>
+            <Button Margin="0 100 0 0" Width="150" FontSize="16" FontWeight="Bold" Height="40" Click="Button_Click_Add_Data_Base">Добавить</Button>
         </StackPanel>
     </Grid>
 </Window>

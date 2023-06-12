@@ -35,9 +35,11 @@ namespace TZ_Fin_Tech
                 string text_name = text_box_name.Text;
                 int text_kol = Convert.ToInt32(text_box_kol.Text) as int? ?? default(int);
                 int text_price = Convert.ToInt32(text_box_price.Text) as int? ?? default(int);
-                int text_izdelUP = Convert.ToInt32(izdelUp_all_lvl.SelectedValue) as int? ?? default(int);
                 int text_izdel = (max_izdel_id + 1);
-                data.Inset_data_base_two_table(text_name, text_kol, text_price, text_izdelUP, text_izdel, add_mas_parent);
+                data.Inset_data_base_two_table(text_name, text_kol, text_price, 1, text_izdel, add_mas_parent);
+                MainWindow main = new MainWindow();
+                main.Show();
+                this.Close();
             }
             catch (Exception ex)
             {
