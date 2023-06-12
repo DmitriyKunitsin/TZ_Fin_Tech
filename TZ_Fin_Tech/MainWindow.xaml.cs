@@ -66,9 +66,10 @@ namespace TZ_Fin_Tech
         {
             DataBase data = new DataBase();
             int numb_selec = Convert.ToInt32(Three_lvl_data_base.SelectedValue);
+            //lvl_data_base = numb_selec;
             if (Three_lvl_data_base.SelectedIndex == numb_selec - 1)
             {
-                parentList.Items.Clear(); lvl_data_base = 1;
+                parentList.Items.Clear(); lvl_data_base = numb_selec;
                 var list = data.Out_data_view_list(numb_selec);
                 foreach (var item in list)
                 {

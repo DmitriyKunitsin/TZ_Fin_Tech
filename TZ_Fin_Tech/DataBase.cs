@@ -161,7 +161,7 @@ namespace TZ_Fin_Tech
         public List<Parent> Out_data_view_list(int lvl_comboBox)
         {
             ApplicationConnect connect = new ApplicationConnect();
-            string where_parent_number = $"SELECT  Izdel.Name, IZDEL.Price , links.kol  FROM Links inner JOIN Izdel ON parent_id = links.parent AND izdelUP_id == links.IzdelUp AND  parent_id  = '{lvl_comboBox}'  AND id = links.name_id ; ";
+            string where_parent_number = $"SELECT  Izdel.Name, IZDEL.Price , links.kol, Izdel  FROM Links inner JOIN Izdel ON parent_id = links.parent AND izdelUP_id == links.IzdelUp AND  parent_id  = '{lvl_comboBox}'  AND id = links.name_id ; ";
             SQLiteCommand com_search_parent_number = new SQLiteCommand(where_parent_number, connect.myConnection);
             connect.OpenConnection();
             var reader = com_search_parent_number.ExecuteReader();
@@ -173,6 +173,7 @@ namespace TZ_Fin_Tech
                     Name = reader.GetString(0),
                     Price = reader.GetInt32(1) as int? ?? default(int),
                     Kol = reader.GetInt32(2) as int? ?? default(int),
+                    IzdelUP_id = reader.GetInt32(3) as int? ?? default(int)
                 });
             }
             return par;

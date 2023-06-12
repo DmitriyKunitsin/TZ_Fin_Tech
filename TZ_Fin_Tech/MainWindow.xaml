@@ -26,9 +26,10 @@
             <ListView Margin="10" ItemsSource="{DynamicResource ResourceKey=Parent}" x:Name="parentList">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Наименоание" DisplayMemberBinding="{Binding Name}" Width="200"></GridViewColumn>
-                            <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding Price}" Width="100"></GridViewColumn>
-                            <GridViewColumn Header="колличество" DisplayMemberBinding="{Binding Kol}" Width="75"></GridViewColumn>
+                            <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding Name}" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Price}" Width="Auto"></GridViewColumn>
+                            <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding Kol}" Width="Auto"></GridViewColumn>
+                        <GridViewColumn Header="Уникальный номер" DisplayMemberBinding="{Binding IzdelUP_id}" Width="Auto"></GridViewColumn>
                         </GridView>
                     </ListView.View>
             </ListView> 
