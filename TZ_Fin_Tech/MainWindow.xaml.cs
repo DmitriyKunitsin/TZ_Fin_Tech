@@ -28,12 +28,13 @@ namespace TZ_Fin_Tech
             InitializeComponent();
             DataBase data = new DataBase();
             data.CreatTable_Izdel();
-            //var list = data.Out_data_view_list(lvl_data_base);
-            //foreach (var item in list)
-            //{
-            //    parentList.Items.Add(item);
-            //}
-
+            //int max_lvl_parent = data.Seatch_max_lvl_parent(out int lvl);
+            //parent_all_lvl.Items.Add(max_lvl_parent);
+            var izdel = data.Seatch_all_lvl_parent();
+            foreach (Izdel zde in izdel)
+            {
+            parent_all_lvl.Items.Add(zde.Parent_id.ToString());
+            }
         }
         private static int _lvl_data_base = 0;
         public static int lvl_data_base { get { return _lvl_data_base; } set { _lvl_data_base = value; } }
@@ -85,10 +86,10 @@ namespace TZ_Fin_Tech
             string text_name = text_box_name.Text; int text_kol = Convert.ToInt32(text_box_kol.Text);
             int text_price = Convert.ToInt32(text_box_price.Text);
             int text_izdelUP = Convert.ToInt32(text_box_izdelUP.Text);int text_izdel = Convert.ToInt32(text_box_izdel.Text);
-            int text_parent = Convert.ToInt32(text_box_parent.Text);
+            
             DataBase data = new DataBase();
 
-            data.Inset_data_base_two_table(text_name,text_kol, text_price, text_izdelUP, text_izdel, text_parent);
+            data.Inset_data_base_two_table(text_name,text_kol, text_price, text_izdelUP, text_izdel);
             
             
         }
@@ -98,7 +99,6 @@ namespace TZ_Fin_Tech
         private void text_box_price_GotFocus(object sender, RoutedEventArgs e)   { text_box_price.Clear();   }
         private void text_box_izdelUP_GotFocus(object sender, RoutedEventArgs e) {  text_box_izdelUP.Clear();   }
         private void text_box_izdel_GotFocus(object sender, RoutedEventArgs e) {  text_box_izdel.Clear();   }
-        private void text_box_parent_GotFocus(object sender, RoutedEventArgs e) {   text_box_parent.Clear();    }
     }
 }
     

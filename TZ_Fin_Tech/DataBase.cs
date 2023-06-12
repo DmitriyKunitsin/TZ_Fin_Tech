@@ -125,19 +125,18 @@ namespace TZ_Fin_Tech
             }
             return par;
         }
-        public void Inset_data_base_two_table(string Name,int kol ,int price, int IzdelUP_id, int izdel_id, int parent_id)
+        public void Inset_data_base_two_table(string Name,int kol ,int price, int IzdelUP_id, int izdel_id)
         {
             int id = 0;
             ApplicationConnect connect = new ApplicationConnect();
             SQLiteDataReader reader = null;
-            string add_table_one = "INSERT INTO Izdel ('Name', 'Price', 'IzdelUp_id','izdel_id','parent_id') VALUES (@Name, @Price, @IzdelUp_id, @izdel_id, @parent_id)";
+            string add_table_one = "INSERT INTO Izdel ('Name', 'Price', 'IzdelUp_id','izdel_id') VALUES (@Name, @Price, @IzdelUp_id, @izdel_id)";
             SQLiteCommand myCommand = new SQLiteCommand(add_table_one, connect.myConnection);
             connect.OpenConnection();
             myCommand.Parameters.AddWithValue("@Name", Name);
             myCommand.Parameters.AddWithValue("@Price", price);
             myCommand.Parameters.AddWithValue("@IzdelUp_id", IzdelUP_id);
             myCommand.Parameters.AddWithValue("@izdel_id", izdel_id);
-            myCommand.Parameters.AddWithValue("@parent_id", parent_id);
             var resault = myCommand.ExecuteNonQuery();
             string search_id_name = $"SELECT id FROM Izdel WHERE Name='{Name}'";
             SQLiteCommand comand_id_name = new SQLiteCommand(search_id_name, connect.myConnection);
@@ -147,18 +146,16 @@ namespace TZ_Fin_Tech
             {
                 id = reader.GetInt32(0);
             }
-            string add_data_table_two = "INSERT INTO Links ('IzdelUp', 'Izdel', 'kol','parent','name_id') VALUES (@IzdelUp, @Izdel, @kol, @parent, @name_id)";
+            string add_data_table_two = "INSERT INTO Links ('IzdelUp', 'Izdel', 'kol','name_id') VALUES (@IzdelUp, @Izdel, @kol, @name_id)";
             SQLiteCommand comand_add_two_table = new SQLiteCommand(add_data_table_two, connect.myConnection);
             connect.OpenConnection();
             comand_add_two_table.Parameters.AddWithValue("@IzdelUp", IzdelUP_id);
             comand_add_two_table.Parameters.AddWithValue("@Izdel", izdel_id);
             comand_add_two_table.Parameters.AddWithValue("@kol", kol);
-            comand_add_two_table.Parameters.AddWithValue("@parent", parent_id);
             comand_add_two_table.Parameters.AddWithValue("@name_id", id);
             resault = comand_add_two_table.ExecuteNonQuery();
             connect.CloseConnection();
         }
-
         public List<Parent> Out_data_view_list(int lvl_comboBox)
         {
             ApplicationConnect connect = new ApplicationConnect();
@@ -177,6 +174,40 @@ namespace TZ_Fin_Tech
                 });
             }
             return par;
+        }
+        public int  Seatch_max_lvl_parent(out int parent_id)
+        {
+            ApplicationConnect connect = new ApplicationConnect();
+            parent_id = 0;
+            string search_lvl_par = "SELECT MAX(parent_id) FROM Izdel";
+            SQLiteCommand com_search_lvl_ = new SQLiteCommand(search_lvl_par, connect.myConnection);
+            connect.OpenConnection();
+            var reader = com_search_lvl_.ExecuteReader();
+            
+            while (reader.Read())
+            {
+
+                parent_id = Convert.ToInt32(reader.GetInt32(0));
+                
+            }
+           return parent_id;
+        }
+        public List<Izdel>  Seatch_all_lvl_parent()
+        {
+            ApplicationConnect connect = new ApplicationConnect();
+            string search_lvl_par = "SELECT DISTINCT parent_id FROM Izdel";
+            SQLiteCommand com_search_lvl_ = new SQLiteCommand(search_lvl_par, connect.myConnection);
+            connect.OpenConnection();
+            var reader = com_search_lvl_.ExecuteReader();
+            List<Izdel> zdel = new List<Izdel>();
+            while (reader.Read())
+            {
+                zdel.Add(new Izdel()
+                {
+                    Parent_id = reader.GetInt32(0)
+                });
+            }
+           return zdel;
         }
     }
 }
