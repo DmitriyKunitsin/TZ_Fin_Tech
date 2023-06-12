@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Drawing;
+using System.Windows.Markup;
 
 namespace TZ_Fin_Tech
 {
@@ -27,16 +28,16 @@ namespace TZ_Fin_Tech
             InitializeComponent();
             DataBase data = new DataBase();
             data.CreatTable_Izdel();
-            var list = data.Out_data_view_list(lvl_data_base);
-            foreach ( var item in list )
-            {
-                parentList.Items.Add(item);
-            }
-            
+            //var list = data.Out_data_view_list(lvl_data_base);
+            //foreach (var item in list)
+            //{
+            //    parentList.Items.Add(item);
+            //}
+
         }
-        private static int _lvl_data_base = 0;        
+        private static int _lvl_data_base = 0;
         public static int lvl_data_base { get { return _lvl_data_base; } set { _lvl_data_base = value; } }
-        
+
         ExcelApp ex = new ExcelApp();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -50,10 +51,34 @@ namespace TZ_Fin_Tech
 
         public void Three_lvl_data_base_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Three_lvl_data_base.SelectedIndex == 0) { lvl_data_base = 1; }
-            if (Three_lvl_data_base.SelectedIndex == 1) { lvl_data_base = 2; }
-            if (Three_lvl_data_base.SelectedIndex == 2) { lvl_data_base = 3; }
+            DataBase data = new DataBase();
+            if (Three_lvl_data_base.SelectedIndex == 0) {
+                parentList.Items.Clear(); lvl_data_base = 1;
+                var list = data.Out_data_view_list(lvl_data_base);
+                foreach (var item in list)
+                {
+                    parentList.Items.Add(item);
+                }
+            }
+            if (Three_lvl_data_base.SelectedIndex == 1)
+            {
+                parentList.Items.Clear(); lvl_data_base = 2;
+                var list = data.Out_data_view_list(lvl_data_base);
+                foreach (var item in list)
+                {
+                    parentList.Items.Add(item);
+                }
+            }
+            if (Three_lvl_data_base.SelectedIndex == 2) {
+                parentList.Items.Clear(); lvl_data_base = 3;
+                var list = data.Out_data_view_list(lvl_data_base);
+                foreach (var item in list)
+                {
+                    parentList.Items.Add(item);
+                }
+            }
         }
+    
 
         private void Button_Click_Add_data(object sender, RoutedEventArgs e)
         {
