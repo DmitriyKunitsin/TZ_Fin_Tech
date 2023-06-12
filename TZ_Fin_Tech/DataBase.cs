@@ -22,9 +22,9 @@ namespace TZ_Fin_Tech
             //добавление таблицы в случае ее отсутсвия ;
             ApplicationConnect applicationConnect = new ApplicationConnect();
             string comandCreat_Izdel = "CREATE TABLE IF NOT EXISTS Izdel " +
-                "(id INTEGER PRIMARY KEY, Name VARCHAR(100), Price DECIMAL(20,2))";
+                "(id INTEGER PRIMARY KEY, Name VARCHAR(100), Price DECIMAL(20,2), IzdelUp_id int, izdel_id int, parent_id int )";
             string comandCreat_Links = "CREATE TABLE IF NOT EXISTS Links " +
-                "(IzdelUp bigint, Izdel bigint, kol int)";
+                "(IzdelUp bigint, Izdel bigint, kol int, parent int, name_id int)";
             SQLiteCommand command_izdel = new SQLiteCommand(comandCreat_Izdel, applicationConnect.myConnection);
             SQLiteCommand command_links = new SQLiteCommand(comandCreat_Links, applicationConnect.myConnection);
 
