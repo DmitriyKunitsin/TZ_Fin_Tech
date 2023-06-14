@@ -55,5 +55,12 @@ namespace TZ_Fin_Tech
         private void text_box_kol_GotFocus(object sender, RoutedEventArgs e)       { text_box_kol.Clear(); }
 
         private void text_box_name_GotFocus(object sender, RoutedEventArgs e)        { text_box_name.Clear(); }
+
+        private void Button_Click_Close_back(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow   = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
     }
 }

@@ -16,12 +16,14 @@ namespace TZ_Fin_Tech
             Excel.Application app;
             Microsoft.Office.Interop.Excel.Workbook wb;
             Microsoft.Office.Interop.Excel.Worksheet ws;
+           // Excel.Filters filter;
             
             app = new Excel.Application();
-            
+           // filter.Creator[]
+
             wb = app.Workbooks.Add();
             ws = wb.Worksheets[1];
-
+            
             ws.Range["D1"].Value = "Изделие";
             ws.Range["D1"].Interior.Color = Excel.XlRgbColor.rgbGray;
             ws.Range["E1"].Value = "Кол-во";
@@ -29,7 +31,7 @@ namespace TZ_Fin_Tech
             ws.Range["F1"].Value = "Стоимость" ;
             ws.Range["F1"].Interior.Color = Excel.XlRgbColor.rgbGray;
             ws.Range["G1"].Value = "Цена" ;
-            ws.Range["G1"].Interior.Color = Excel.XlRgbColor.rgbGray;
+            ws.Range["G1"].Interior.Color = Excel.XlRgbColor.rgbGray;            
             
             DataBase izd= new DataBase();
             var lvl_parent =  MainWindow.lvl_data_base;
@@ -58,6 +60,7 @@ namespace TZ_Fin_Tech
                     full_price_for_price_and_kol = summ_price * summ_kol;
                     cellName = "D" + counter.ToString();
                     var range2 = ws.get_Range(cellName, cellName);
+                    
                     if (zdel.IzdelUP_id == number_control_id)
                     {
                         range2.Value2 = ws.Range["D" + counter].Value =
